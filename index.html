@@ -11,8 +11,31 @@
     <!-- //Custom Theme files -->
     <!-- online-fonts -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-	
-	
+	<style>
+a { color: white; text-decoration: none; }
+
+.arrow {
+  text-align: center;
+  margin: 8% 0;
+}
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+    </style>
 </head>
 
 <body>
@@ -46,9 +69,14 @@
   
         <div class="banner-content-hit3pvt">
             <div class="banner-lore-info text-center">
-                <h3 style="margin-bottom: 1.2%;">Hello There!! from <b>World on Hands</b>;
-                </h3>
-                <h4 class="text-white">A passionate Photographer, YouTuber, Mentor with 100k+ Subscribers.</h4>        
+                <h2 style="margin-bottom: 1.2%; font-weight: 100 !important;" class="text-white pb-3">Hello There!! <b>Welcome to my offical website</b>
+                </h2>
+                <h5 class="text-white">
+                    Welcome to our offical website, where you'll find a wide variety of high-quality LUTs
+                </h5>        
+                <div class="arrow bounce">
+                <a class="fa fa-arrow-down fa-2x" href="#luts"></a>
+                </div>
             </div>
         </div>
 
@@ -66,11 +94,13 @@
                     
                     <p class="mt-2 text-justify">
 
-                        I am a Photographer, Videographer, mentor and YouTuber with over 100k+ subscribers with a passion for capturing and sharing visual content. I have honed the craft through years of practice and experimentation, developing a unique style and approach that resonates with their audience.
+                        Our collection of LUTs is carefully crafted by professional colorists and filmmakers to ensure the best possible results for your projects.
+                        <br />
+Our LUTs are designed to work with a variety of editing software, including Adobe Premiere Pro, Final Cut Pro, Davinci Resolve, and more
+<br />
+Our collection includes a wide range of LUTs, from subtle color grading tweaks to bold and dramatic looks. Whether you're going for a warm and cozy vibe or a cold and moody atmosphere, we have the perfect LUT for you.
 
-                        <br/ >
-         As a YouTuber, mentor I have also cultivated a strong online presence and community, building a loyal following of fans/ mentees who are eager to learn from my expertise and insights.
-                    </p>
+<br />
                     <button class="mt-5  btn btn-outline-primary">Connect with me</button>
                 </div>
 
@@ -81,14 +111,20 @@
     <div class="py-3 text-center mb-4">
 
         <div class="content-left-bottom entry-lore-infopl-lg-4">
-            <h5 class="mt-1 mb-3">Learn from me</h5>
+            <h5 class="mt-1 mb-3" id="luts">Slog Luts</h5>
         </div>
     </div>
 
-    <div id="target-div">
-        <iframe src="https://WorldOnHands.exlyapp.com/" scrolling="no" width="100%" style="min-height: 150vh; overflow: hidden;" frameborder="0"></iframe>
+    <!-- <div id="target-div" class="myIframe" onclick="window.location='https://worldonhands.exlyapp.com/'">
+        <iframe id="myIframe" src="https://WorldOnHands.exlyapp.com/" scrolling="no" width="100%" style="min-height: 150vh; overflow: hidden;" frameborder="0"></iframe>
     
-    </div>  
+    </div>   -->
+
+    <div class="container">
+        <div id="slog-data" class="row view-group my-lg-5 my-4">
+        
+        </div>
+    </div>
    
 
     <!-- <footer id="foot" class="footer-content text-center py-5">
@@ -158,10 +194,51 @@
 
 
 <script src="./js/script.js"></script>
+<script>
+    document.getElementById("myFrame").contentDocument.addEventListener(
+        'click', function(event) {
+        alert('helloworld')
+    }, false
+    );
+</script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $('#target-div').load('https://WorldOnHands.exlyapp.com/ .elementary_laconicContainer__2WeQp');
 </script> -->
+<script>
+    fetch('https://worldonhands.com/abc.json')
+    .then((response) => {
+        return response.json();
+    })
+    .then(users =>{
+        console.log(users)
+        data1 = ''
+        users.forEach((user, i) => {
+            data1 += `<div class="item col-lg-4 mt-3">
+            <div class="thumbnail card myCard">
+                <div class="img-event">
+                    <img class="group list-group-image img-fluid" src="${user.photo}" alt="World On Hands">
+                </div>
+                <div class="caption card-body text-center">
+                    <h6 class="group card-title inner list-group-item-heading">
+                        <b>${user.title}</b>
+                    </h6>
+                    <p>
+                       <small>
+                        ${user.doc}
+                        </small>
+                    </p>
+                        <a href="https://worldonhands.exlyapp.com/" class="btn btn-outline-primary mt-2">Buy Now</a>
+                    </div>
+            </div>
+        </div>`
+        });
+        document.getElementById('slog-data').innerHTML = data1;
+       
+    })
+    .then((data) => console.log(data));
+</script>
+
 </body>
 
 </html>
