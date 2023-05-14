@@ -633,6 +633,12 @@ p.hit3pvt-phone {
     position: relative;
     min-height: 35em;
 }
+
+.main-content-other {
+    background-color: #785D6D;
+    min-height: 10vh;
+}
+
 .main-content1 {
     background: #38263D;
     -webkit-background-size: cover;
